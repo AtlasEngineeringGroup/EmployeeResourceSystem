@@ -14,5 +14,12 @@ public class Colaborador {
         this.ativo = true;
         this.dataDeAdmissao = dataDeAdmissao;
     }
+
+    public void promover(String novoCargo, double novoSalario){
+        this.cargo = novoCargo;
+        this.salario = novoSalario;
+    }
+
+
 }
 

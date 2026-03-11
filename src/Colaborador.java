@@ -20,6 +20,9 @@ public class Colaborador {
         this.salario = novoSalario;
     }
 
+    public int getId(){
+        return id;
+    }
 
 }
 

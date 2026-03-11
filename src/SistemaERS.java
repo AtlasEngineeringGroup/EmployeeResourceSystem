@@ -19,24 +19,35 @@ public class SistemaERS {
 
     public void alocarRecurso(int colaboradorid, int recursosid, String data, String observacao) {
 
-        for (Recurso r : listaRecursos) {
-            if (r.getId() == recursosid && r.podeSerAlocado()) {
-                for (Colaborador c : listaColaboradores) {
-                    if (c.getId() == colaboradorid) {
+        boolean encontrado = false;
 
-                        Alocacao novaAlocacao = new Alocacao(colaboradorid, recursosid, data, observacao);
-                        listaAlocacoes.add(novaAlocacao);
-                        r.setDisponivel(false);
-                        System.out.println("Recurso alocado com sucesso");
-                    } else {
-                        System.out.println("Erro ao alocar! ");
-                    }
-                }
+        for (Recurso r : listaRecursos) {
+//            if (r.getId() == recursosid && r.podeSerAlocado()) {
+              if (r.getId() == recursosid) {
+                  if (r.valorEstimado > 5000){
+                      System.out.println("Para alocar este recurso é necessário autorização especial! ");
+                  }
+                  if (r.podeSerAlocado()){
+                      for (Colaborador c : listaColaboradores) {
+                          if (c.getId() == colaboradorid) {
+                              Alocacao novaAlocacao = new Alocacao(colaboradorid, recursosid, data, observacao);
+                              listaAlocacoes.add(novaAlocacao);
+                              r.setDisponivel(false);
+                              System.out.println("Recurso alocado com sucesso");
+                              encontrado = true;
+                          }
+                          if (!encontrado){
+                              System.out.println("Colaborador ou Recurso não encontrados! ");
+                          }
+                      }
+                  }
             }
         }
     }
 
     public void devolverRecurso(int colaboradorid, int recursosid){
+
+        boolean encontrado = false;
 
         for (int i = 0; i < listaAlocacoes.size(); i++){
             Alocacao a = listaAlocacoes.get(i);
@@ -48,33 +59,39 @@ public class SistemaERS {
                             }
                         }
                     System.out.println("O recurso foi devolvido! ");
-                }
-            else {
-                System.out.println("Erro! ");
+                    encontrado = true;
+                    break;
+
                 }
             }
+        if (!encontrado){
+            System.out.println("Alocação não encontrada!");
+        }
     }
 
     public void buscarRecursosDisponiveis(){
 
         for (Recurso r : listaRecursos) {
             if (r.disponivel) {
-                System.out.println("O recurso " + r.nomeDoRecurso + "está disponível! ");
+                System.out.println("O recurso " + r.nomeDoRecurso + " está disponível! ");
             }
         }
     }
 
     public void exibirColaborador(int idColaborador){
+
+        boolean encontrado = false;
+
         for (Colaborador c : listaColaboradores){
             if (c.id == idColaborador){
                 System.out.println("Nome: " + c.nome);
                 System.out.println("Cargo: " + c.cargo);
                 System.out.println("Salário: " + c.salario);
                 System.out.println("Data de Admissão: " + c.dataDeAdmissao);
+                encontrado = true;
             }
-            else {
+            if (!encontrado)
                 System.out.println("Colaborador não encontrado! ");
-            }
         }
     }
 
@@ -82,11 +99,18 @@ public class SistemaERS {
         SistemaERS sistema = new SistemaERS();
 
         sistema.cadastrarColaborador(1, "João", "Dev", 5000, "07/09/2022");
-        sistema.cadastrarRecuros(1,"Notebook","Eletronico",true,2000);
+
+        sistema.cadastrarRecuros(1,"Notebook","Eletronico",true,5000)
+        ;
         sistema.alocarRecurso(1,1,"11/03/2026"," Notebook foi alocado!");
+
         System.out.println(sistema.listaAlocacoes);
+
         sistema.devolverRecurso(1,1);
+
         sistema.buscarRecursosDisponiveis();
+
         sistema.exibirColaborador(1);
+
     }
 }

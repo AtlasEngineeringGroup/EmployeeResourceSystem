@@ -28,10 +28,4 @@ public class Alocacao {
         return recursosid;
     }
 
-    public void alocarRecurso(int colaboradorint, int recursosid){
-
-
-
-
-    }
 }

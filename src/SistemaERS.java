@@ -36,9 +36,10 @@ public class SistemaERS {
         }
     }
 
-    public void devolverRecurso(int colaboradorid, int recursosid, String data){
+    public void devolverRecurso(int colaboradorid, int recursosid){
 
-        for (Alocacao a : listaAlocacoes){
+        for (int i = 0; i < listaAlocacoes.size(); i++){
+            Alocacao a = listaAlocacoes.get(i);
             if (a.getIdRecursos() == recursosid && a.getIdColaborador() == colaboradorid){
                 listaAlocacoes.remove(a);
                     for (Recurso r : listaRecursos){
@@ -52,14 +53,40 @@ public class SistemaERS {
                 System.out.println("Erro! ");
                 }
             }
+    }
+
+    public void buscarRecursosDisponiveis(){
+
+        for (Recurso r : listaRecursos) {
+            if (r.disponivel) {
+                System.out.println("O recurso " + r.nomeDoRecurso + "está disponível! ");
+            }
         }
+    }
+
+    public void exibirColaborador(int idColaborador){
+        for (Colaborador c : listaColaboradores){
+            if (c.id == idColaborador){
+                System.out.println("Nome: " + c.nome);
+                System.out.println("Cargo: " + c.cargo);
+                System.out.println("Salário: " + c.salario);
+                System.out.println("Data de Admissão: " + c.dataDeAdmissao);
+            }
+            else {
+                System.out.println("Colaborador não encontrado! ");
+            }
+        }
+    }
 
     public static void main(String[] args) {
         SistemaERS sistema = new SistemaERS();
 
         sistema.cadastrarColaborador(1, "João", "Dev", 5000, "07/09/2022");
         sistema.cadastrarRecuros(1,"Notebook","Eletronico",true,2000);
-        sistema.alocarRecurso(1,1,"11/03/2026","Notebook foi alocado!");
+        sistema.alocarRecurso(1,1,"11/03/2026"," Notebook foi alocado!");
         System.out.println(sistema.listaAlocacoes);
+        sistema.devolverRecurso(1,1);
+        sistema.buscarRecursosDisponiveis();
+        sistema.exibirColaborador(1);
     }
 }

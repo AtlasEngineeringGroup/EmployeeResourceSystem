@@ -14,9 +14,7 @@ public class Recurso {
 
     }
 
-    public void alocarRecurso(double valorRecurso){
-        if (this.valorEstimado > 5000 ){
-            System.out.println("Mensagem especial!");
-        }
+    public boolean podeSerAlocado(){
+        return disponivel && valorEstimado <= 5000;
     }
 }

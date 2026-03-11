@@ -14,6 +14,14 @@ public class Recurso {
 
     }
 
+    public int getId(){
+        return id;
+    }
+
+    public void setDisponivel(boolean disponivel){
+        this.disponivel = disponivel;
+    }
+
     public boolean podeSerAlocado(){
         return disponivel && valorEstimado <= 5000;
     }

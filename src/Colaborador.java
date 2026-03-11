@@ -9,7 +9,7 @@ public class Colaborador {
     public Colaborador(int id, String nome, String cargo, double salario, String dataDeAdmissao){
         this.id = id;
         this.nome = nome;
-        this.nome = cargo;
+        this.cargo = cargo;
         this.salario = salario;
         this.ativo = true;
         this.dataDeAdmissao = dataDeAdmissao;
@@ -20,6 +20,9 @@ public class Colaborador {
         this.salario = novoSalario;
     }
 
+    public int getId(){
+        return id;
+    }
 
 }
 

@@ -1,4 +1,7 @@
+package br.com.fiap.entities;
+
 public class Recurso {
+
     int id;
     String nomeDoRecurso;
     String categoria;
@@ -9,13 +12,24 @@ public class Recurso {
         this.id = id;
         this.nomeDoRecurso = nomeDoRecurso;
         this.categoria = categoria;
-        this.disponivel = true;
+        this.disponivel = disponivel;
         this.valorEstimado = valorEstimado;
-
     }
 
     public int getId(){
         return id;
+    }
+
+    public double getValorEstimado(){
+        return valorEstimado;
+    }
+
+    public boolean isDisponivel(){
+        return disponivel;
+    }
+
+    public String getNomeDoRecurso(){
+        return nomeDoRecurso;
     }
 
     public void setDisponivel(boolean disponivel){
@@ -23,6 +37,6 @@ public class Recurso {
     }
 
     public boolean podeSerAlocado(){
-        return disponivel && valorEstimado <= 5000;
+        return disponivel;
     }
 }

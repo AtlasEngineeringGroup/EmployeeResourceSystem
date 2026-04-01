@@ -207,11 +207,11 @@ Lista todos os recursos cadastrados no sistema e seu status de disponibilidade.
 Mostra os dados de um colaborador específico.
 
 ---
-### Inovação Implementada
+## Inovação Implementada
 
 Foi implementada uma funcionalidade adicional inspirada em práticas reais de empresas:
 
-## Cálculo do custo de equipamentos por colaborador
+### Cálculo do custo de equipamentos por colaborador
 
 O sistema calcula automaticamente o valor total dos recursos alocados para um colaborador.
 
@@ -228,7 +228,9 @@ Além disso, foi utilizada a biblioteca JOptionPane como inovação implementada
 
 Exemplo de saída:
 
+```
 Custo total de equipamentos do colaborador: R$ 5000
+```
 
 Essa funcionalidade simula práticas utilizadas em empresas para controle de ativos e planejamento financeiro.
 
